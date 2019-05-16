@@ -2,6 +2,7 @@ package com.forte.qqrobot.component.forlemoc.socket;
 
 import com.forte.qqrobot.component.forlemoc.LinkConfiguration;
 import com.forte.qqrobot.component.forlemoc.SocketResourceDispatchCenter;
+import com.forte.qqrobot.exception.RobotRuntionException;
 import com.forte.qqrobot.listener.invoker.ListenerManager;
 import com.forte.qqrobot.log.QQLog;
 
@@ -36,15 +37,8 @@ public class QQWebSocketLinker {
         LinkConfiguration linkConfiguration = SocketResourceDispatchCenter.getLinkConfiguration();
         int times = 0;
         boolean localB = true;
-
-        //构建监听函数管理器等扫描器所构建的
-//        ListenerMethodScanner scanner = ResourceDispatchCenter.getListenerMethodScanner();
-//        ListenerManager manager = scanner.buildManager();
-//        ListenerPlug plug = scanner.buildPlug();
-//        //保存
-//        ResourceDispatchCenter.saveListenerManager(manager);
-//        ResourceDispatchCenter.saveListenerPlug(plug);
-
+        //是否连接成功
+        boolean success = false;
         //连接的时候先尝试一次本地连接
         try {
             QQLog.info("尝试本地连接...");
@@ -75,9 +69,9 @@ public class QQWebSocketLinker {
                 };
                 cc = client.getConstructor(URI.class, ListenerManager.class, Set.class).newInstance(params);
                 QQLog.info("连接阻塞中...");
-                boolean b = cc.connectBlocking();
-                QQLog.info(b ? "连接成功" : "连接失败");
-                if (b) {
+                success = cc.connectBlocking();
+                QQLog.info(success ? "连接成功" : "连接失败");
+                if (success) {
                     //如果成功，跳出无限连接循环
                     break;
                 } else {
@@ -96,14 +90,22 @@ public class QQWebSocketLinker {
             }
                 times++;
                 //如果重试次数超过设定次数，跳出循环
-                if (retryTime > 0 && times >= retryTime) {
+                //只有重试次数不为负数的时候生效
+                if (retryTime >= 0 && times >= retryTime) {
                     break;
                 }
         }
 
-        //循环结束即认定为连接成功
-        linkSuccess();
-        return cc;
+        //循环结束判断是否连接成功
+        if(success){
+            //如果成功，调用成功回调并返回连接
+            linkSuccess();
+            return cc;
+        }else{
+            //如果失败，抛出异常
+            throw new RobotRuntionException("连接失败");
+        }
+
     }
 
     /**

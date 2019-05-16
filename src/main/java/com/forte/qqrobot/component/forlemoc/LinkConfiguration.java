@@ -18,6 +18,8 @@ public final class LinkConfiguration extends BaseConfiguration {
     /** 连接端口号，默认为25303 */
     private Integer port = 25303;
 
+    /** 连接的时候断线重连的次数，默认为-1 */
+    private int retryTime = -1;
 
     /* ———————— 动态交互的参数为静态参数，保证参数存在 */
 
@@ -100,6 +102,14 @@ public final class LinkConfiguration extends BaseConfiguration {
 
     public void setHTTP_API_path(String HTTP_API_path) {
         LinkConfiguration.HTTP_API_path = HTTP_API_path;
+    }
+
+    public void setRetryTime(int retryTime){
+        this.retryTime = retryTime;
+    }
+
+    public int getRetryTime(){
+        return this.retryTime;
     }
 
 }

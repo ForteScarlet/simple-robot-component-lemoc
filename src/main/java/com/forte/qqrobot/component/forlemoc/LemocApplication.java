@@ -86,7 +86,11 @@ public class LemocApplication extends BaseApplication<LinkConfiguration> {
         LinkConfiguration configuration = getConfiguration();
         //主要的socket连接，如果无法结果精准获取请求后的返回值的话，后期会同时连接多个socket
         //由于这里用到了config对象，需要
-        return QQWebSocketLinker.link(configuration.getSocketClient(), manager, configuration.getLinkUrl());
+        return QQWebSocketLinker.link(configuration.getSocketClient(),
+                manager,
+                configuration.getLinkUrl(),
+                configuration.getRetryTime()
+                );
     }
 
 
