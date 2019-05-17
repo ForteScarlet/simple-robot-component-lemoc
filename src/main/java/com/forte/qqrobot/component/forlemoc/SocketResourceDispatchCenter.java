@@ -18,7 +18,7 @@ public class SocketResourceDispatchCenter extends ResourceDispatchCenter {
      */
     static void saveQQWebSocketMsgCreator(QQJSONMsgCreator qqJSONMsgCreator){
         //将CQCodeUtil放入单例工厂
-        SingleFactory.set(qqJSONMsgCreator);
+        save(qqJSONMsgCreator);
     }
 
     /**
@@ -26,7 +26,7 @@ public class SocketResourceDispatchCenter extends ResourceDispatchCenter {
      * @return  QQWebSocketMsgCreator单例对象
      */
     public static QQJSONMsgCreator getQQJSONMsgCreator(){
-        return SingleFactory.get(QQJSONMsgCreator.class);
+        return get(QQJSONMsgCreator.class);
     }
 
 
@@ -44,7 +44,7 @@ public class SocketResourceDispatchCenter extends ResourceDispatchCenter {
      * @return LinkConfiguration单例对象
      */
     public static LinkConfiguration getLinkConfiguration(){
-        return SingleFactory.get(LinkConfiguration.class);
+        return get(LinkConfiguration.class);
     }
 
 
@@ -53,7 +53,7 @@ public class SocketResourceDispatchCenter extends ResourceDispatchCenter {
      * @param qqWebSocketInfoReturnManager 消息响应器
      */
     static void saveQQWebSocketInfoReturnManager(QQWebSocketInfoReturnManager qqWebSocketInfoReturnManager){
-        SingleFactory.set(qqWebSocketInfoReturnManager);
+        save(qqWebSocketInfoReturnManager);
     }
 
     /**
@@ -61,7 +61,7 @@ public class SocketResourceDispatchCenter extends ResourceDispatchCenter {
      * @return  QQWebSocketInfoReturnManager单例对象
      */
     public static QQWebSocketInfoReturnManager getQQWebSocketInfoReturnManager(){
-        return SingleFactory.get(QQWebSocketInfoReturnManager.class);
+        return get(QQWebSocketInfoReturnManager.class);
     }
 
 

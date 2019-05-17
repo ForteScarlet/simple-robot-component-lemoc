@@ -7,6 +7,8 @@ import com.forte.qqrobot.sender.senderlist.SenderGetList;
 import com.forte.qqrobot.sender.senderlist.SenderSendList;
 import com.forte.qqrobot.sender.senderlist.SenderSetList;
 
+import java.io.IOException;
+
 /**
  * LEMOC 连接抽象类
  * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
@@ -19,6 +21,9 @@ public class LemocApplication extends BaseApplication<LinkConfiguration> {
      * 送信器，将会在连接成功后的after方法中用于构建MsgSender
      */
     private QQWebSocketMsgSender sender;
+
+    /** 与服务端的连接 */
+    private QQWebSocketClient qqWebSocketClient;
 
     /**
      * 资源初始化
@@ -65,7 +70,7 @@ public class LemocApplication extends BaseApplication<LinkConfiguration> {
     @Override
     protected void start(ListenerManager manager) {
         // 连接socket
-        QQWebSocketClient qqWebSocketClient = linkSocket(manager);
+        qqWebSocketClient = linkSocket(manager);
         //保存送信器
         sender = qqWebSocketClient.getSocketSender();
     }
@@ -94,6 +99,16 @@ public class LemocApplication extends BaseApplication<LinkConfiguration> {
     }
 
 
-
-
+    /**
+     * 关闭连接
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    public void close() throws IOException {
+        if(qqWebSocketClient == null){
+            throw new NullPointerException("尚未连接！");
+        }else{
+            qqWebSocketClient.close();
+        }
+    }
 }
