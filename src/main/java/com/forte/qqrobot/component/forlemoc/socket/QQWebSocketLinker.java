@@ -50,7 +50,7 @@ public class QQWebSocketLinker {
             };
             cc = client.getConstructor(URI.class, ListenerManager.class, Set.class).newInstance(localParams);
             localB = cc.connectBlocking();
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | InterruptedException | URISyntaxException e) {
+        } catch (Exception e) {
             QQLog.debug("本地连接失败");
         }
 
@@ -97,7 +97,7 @@ public class QQWebSocketLinker {
         }
 
         //循环结束判断是否连接成功
-        if(success){
+        if(localB || success){
             //如果成功，调用成功回调并返回连接
             linkSuccess();
             return cc;

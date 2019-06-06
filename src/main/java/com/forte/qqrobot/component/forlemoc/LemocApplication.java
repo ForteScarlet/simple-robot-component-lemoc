@@ -104,7 +104,7 @@ public class LemocApplication extends BaseApplication<LinkConfiguration> {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    public void close() throws IOException {
+    public void close() {
         if(qqWebSocketClient == null){
             throw new NullPointerException("尚未连接！");
         }else{
