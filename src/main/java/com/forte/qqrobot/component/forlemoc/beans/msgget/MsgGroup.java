@@ -55,7 +55,8 @@ public class MsgGroup implements GroupMsg, MsgGet {
             private String font;
             /** 错误编码，无错为0 */
             private String error;
-
+    /** 原生数据字符串 */
+    private String originalData;
             /* —————————— getter & setter —————————— */
 
     public String getUsername() {
@@ -155,6 +156,15 @@ public class MsgGroup implements GroupMsg, MsgGet {
     }
 
     /* ———————— 统一接口 —————————— */
+
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
+    }
 
     /**
      * 获取ID，如果没有此参数推荐使用UUID等来代替

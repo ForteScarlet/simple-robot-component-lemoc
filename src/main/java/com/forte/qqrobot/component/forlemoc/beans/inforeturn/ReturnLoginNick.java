@@ -24,6 +24,9 @@ public class ReturnLoginNick implements LoginQQInfo, InfoReturn {
     /** 登录昵称 */
     private String LoginNick;
 
+    /** 原始数据字符串 */
+    private String originalData;
+
 
     public Integer getReturnCode() {
         return returnCode;
@@ -55,6 +58,8 @@ public class ReturnLoginNick implements LoginQQInfo, InfoReturn {
         LoginNick = loginNick;
     }
 
+
+
     @Override
     public String toString() {
         return "ReturnLoginNick{" +
@@ -70,6 +75,15 @@ public class ReturnLoginNick implements LoginQQInfo, InfoReturn {
     @Override
     public String getName() {
         return LoginNick;
+    }
+
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
     }
 
     /**

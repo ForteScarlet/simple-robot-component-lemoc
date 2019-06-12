@@ -27,6 +27,8 @@ public class EventGroupAdmin implements GroupAdminChange, EventGet {
     private String beingOperateQQ;
     /** 错误码 */
     private Integer error;
+    /** 原生数据字符串 */
+    private String originalData;
 
     /* —————————— getter & settter ———————— */
 
@@ -79,6 +81,15 @@ public class EventGroupAdmin implements GroupAdminChange, EventGet {
     }
 
     /* —————————— 统一接口 —————————— */
+
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
+    }
 
     /**
      * 来自的群

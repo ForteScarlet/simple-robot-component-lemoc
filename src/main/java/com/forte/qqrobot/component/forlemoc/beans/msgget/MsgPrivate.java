@@ -55,7 +55,8 @@ public class MsgPrivate implements PrivateMsg, MsgGet {
              private String msg;
              /** 错误码 */
             private Integer error;
-
+    /** 原生数据字符串 */
+    private String originalData;
              /* ———————————— getter & setter ———————————— */
 
 
@@ -121,6 +122,15 @@ public class MsgPrivate implements PrivateMsg, MsgGet {
 
     public void setSendTime(Long sendTime) {
         this.sendTime = sendTime;
+    }
+
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
     }
 
     /**

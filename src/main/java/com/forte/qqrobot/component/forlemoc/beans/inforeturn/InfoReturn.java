@@ -17,8 +17,11 @@ public interface InfoReturn extends InfoResult {
         return act;
     }
 
+    /** 返回类型编码 */
     Integer getReturn();
+    /** 获取异常 */
     Integer getError();
+    @Override
     String toString();
 
 }

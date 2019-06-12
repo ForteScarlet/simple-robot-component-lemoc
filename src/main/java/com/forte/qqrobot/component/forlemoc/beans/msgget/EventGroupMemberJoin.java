@@ -30,6 +30,8 @@ subType（子类型，1/管理员已同意 2/管理员邀请）
     private String beingOperateQQ;
     /** 错误码 */
     private Integer error;
+    /** 原生数据字符串 */
+    private String originalData;
 
     /* ———————— getter & setter ———————— */
 
@@ -90,6 +92,15 @@ subType（子类型，1/管理员已同意 2/管理员邀请）
     }
 
     /* —————————— 统一接口 ———————— */
+
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
+    }
 
     /**
      * 获取类型

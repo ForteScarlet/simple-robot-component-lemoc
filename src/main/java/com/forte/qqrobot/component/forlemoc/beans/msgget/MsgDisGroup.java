@@ -35,7 +35,8 @@ public class MsgDisGroup implements DiscussMsg, MsgGet {
     private String font;
     /** 错误码 */
     private Integer error;
-
+    /** 原生数据字符串 */
+    private String originalData;
     /* ———————— getter & setter ———————— */
 
     public Integer getAct() {
@@ -127,7 +128,14 @@ public class MsgDisGroup implements DiscussMsg, MsgGet {
         this.error = error;
     }
 
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
 
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
+    }
 
     /**
      * 获取ID，如果没有此参数推荐使用UUID等来代替

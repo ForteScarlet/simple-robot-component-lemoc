@@ -54,6 +54,10 @@ public class ReturnGroupMember implements GroupMemberInfo, InfoReturn {
     /** 允许修改名片，1允许，猜测0是不允许；  */
     private Integer nickcanchange;
 
+    /** 原始数据字符串 */
+    private String originalData;
+
+    @Override
     public Integer getReturn() {
         return returnCode;
     }
@@ -62,6 +66,7 @@ public class ReturnGroupMember implements GroupMemberInfo, InfoReturn {
         this.returnCode = returnCode;
     }
 
+    @Override
     public Integer getError() {
         return error;
     }
@@ -333,6 +338,15 @@ public class ReturnGroupMember implements GroupMemberInfo, InfoReturn {
 
     public void setReturnCode(Integer returnCode) {
         this.returnCode = returnCode;
+    }
+
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
     }
 
     @Override

@@ -34,6 +34,9 @@ public class ReturnLoginInGroups implements GroupList, InfoReturn {
      */
     private String GroupList;
 
+    /** 原始数据字符串 */
+    private String originalData;
+
     /** 群列表信息 */
     private GroupInfo[] groupInfos;
 
@@ -45,6 +48,7 @@ public class ReturnLoginInGroups implements GroupList, InfoReturn {
         this.returnCode = returnCode;
     }
 
+    @Override
     public Integer getError() {
         return error;
     }
@@ -80,6 +84,7 @@ public class ReturnLoginInGroups implements GroupList, InfoReturn {
         this.returnCode = returnCode;
     }
 
+    @Override
     public Integer getReturn() {
         return this.returnCode;
     }
@@ -87,6 +92,15 @@ public class ReturnLoginInGroups implements GroupList, InfoReturn {
     @Override
     public GroupInfo[] getList() {
         return getGroupInfos();
+    }
+
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
     }
 
     /**

@@ -25,6 +25,11 @@ public class ReturnLoginQQ implements LoginQQInfo, InfoReturn {
     /** 应该是登录的qq号 */
     private String LoginQQ;
 
+    /** 原始数据字符串 */
+    private String originalData;
+
+
+
     public Integer getReturnCode() {
         return returnCode;
     }
@@ -32,6 +37,7 @@ public class ReturnLoginQQ implements LoginQQInfo, InfoReturn {
     public void setReturnCode(Integer returnCode) {
         this.returnCode = returnCode;
     }
+    @Override
     public Integer getReturn() {
         return returnCode;
     }
@@ -40,6 +46,7 @@ public class ReturnLoginQQ implements LoginQQInfo, InfoReturn {
         this.returnCode = returnCode;
     }
 
+    @Override
     public Integer getError() {
         return error;
     }
@@ -54,6 +61,15 @@ public class ReturnLoginQQ implements LoginQQInfo, InfoReturn {
 
     public void setLoginQQ(String loginQQ) {
         LoginQQ = loginQQ;
+    }
+
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
     }
 
     @Override

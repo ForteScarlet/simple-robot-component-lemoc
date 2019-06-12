@@ -28,7 +28,8 @@ public class RequestFriend implements FriendAddRequest, MsgGet {
     private String responseFlag;
     /** 错误码 */
     private Integer error;
-
+    /** 原生数据字符串 */
+    private String originalData;
     /* ———————— getter & setter ———————— */
 
     public Integer getAct() {
@@ -51,16 +52,25 @@ public class RequestFriend implements FriendAddRequest, MsgGet {
         return sendTime;
     }
 
-    public void setSnedTime(Long snedTime) {
-        this.sendTime = snedTime;
-    }
-
     public String getFromQQ() {
         return fromQQ;
     }
 
     public void setFromQQ(String fromQQ) {
         this.fromQQ = fromQQ;
+    }
+
+    public void setSendTime(Long sendTime) {
+        this.sendTime = sendTime;
+    }
+
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
     }
 
     /**

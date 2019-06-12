@@ -31,7 +31,8 @@ sendTime，fromGroup，fromQQ，msg（附言），responseFlag（反馈标识-�
     private String responseFlag;
     /** 错误码 */
     private Integer error;
-
+    /** 原生数据字符串 */
+    private String originalData;
     /* ———————— setter & getter ———————— */
 
     public Integer getAct() {
@@ -72,6 +73,15 @@ sendTime，fromGroup，fromQQ，msg（附言），responseFlag（反馈标识-�
 
     public void setFromQQ(String fromQQ) {
         this.fromQQ = fromQQ;
+    }
+
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
     }
 
     /**

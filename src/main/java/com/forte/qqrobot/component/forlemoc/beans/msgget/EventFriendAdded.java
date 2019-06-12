@@ -24,6 +24,8 @@ public class EventFriendAdded implements FriendAdd, EventGet {
     private String fromQQ;
     /** 错误码 */
     private Integer error;
+    /** 原生数据字符串 */
+    private String originalData;
 
     /* ———————— getter & setter ———————— */
 
@@ -67,6 +69,14 @@ public class EventFriendAdded implements FriendAdd, EventGet {
         this.error = error;
     }
 
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
+    }
 
     /**
      * 添加人的QQ

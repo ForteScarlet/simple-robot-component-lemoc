@@ -31,7 +31,8 @@ sendTime，fromGroup，fromQQ（操作者QQ-仅subType为2、3时存在），bei
     private String beingOperateQQ;
     /** 错误码 */
     private Integer error;
-
+    /** 原生数据字符串 */
+    private String originalData;
     /* ———————— getter & setter ———————— */
 
     public Integer getAct() {
@@ -91,6 +92,15 @@ sendTime，fromGroup，fromQQ（操作者QQ-仅subType为2、3时存在），bei
     }
 
     /* —————————— 统一接口 —————————— */
+
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
+    }
 
     /**
      * 获取类型

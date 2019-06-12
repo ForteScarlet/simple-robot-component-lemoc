@@ -13,6 +13,8 @@ public class UnknownMsg implements MsgGet {
 
     private static final String MSG = null;
 
+    private static final String originalData = "";
+
     public Integer getAct() {
         return act;
     }
@@ -46,9 +48,13 @@ public class UnknownMsg implements MsgGet {
         return 0;
     }
 
+    @Override
     public void setMsg(String msg) {
     }
 
-
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
 }
 

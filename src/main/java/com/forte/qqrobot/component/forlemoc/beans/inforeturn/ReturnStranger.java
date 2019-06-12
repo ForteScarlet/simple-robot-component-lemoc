@@ -31,6 +31,9 @@ public class ReturnStranger implements StrangerInfo, InfoReturn {
     /** 年龄 */
     private Integer age;
 
+    /** 原始数据字符串 */
+    private String originalData;
+
     public Integer getReturnCode() {
         return returnCode;
     }
@@ -39,6 +42,7 @@ public class ReturnStranger implements StrangerInfo, InfoReturn {
         this.returnCode = returnCode;
     }
 
+    @Override
     public Integer getReturn() {
         return returnCode;
     }
@@ -47,6 +51,7 @@ public class ReturnStranger implements StrangerInfo, InfoReturn {
         this.returnCode = returnCode;
     }
 
+    @Override
     public Integer getError() {
         return error;
     }
@@ -69,6 +74,15 @@ public class ReturnStranger implements StrangerInfo, InfoReturn {
 
     public void setNick(String nick) {
         this.nick = nick;
+    }
+
+    @Override
+    public String getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(String originalData) {
+        this.originalData = originalData;
     }
 
     /**
