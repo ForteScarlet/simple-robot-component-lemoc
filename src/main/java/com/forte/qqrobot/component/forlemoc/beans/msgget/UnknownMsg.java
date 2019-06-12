@@ -13,7 +13,7 @@ public class UnknownMsg implements MsgGet {
 
     private static final String MSG = null;
 
-    private static final String originalData = "";
+    private static final String originalData = "{here has nothing}";
 
     public Integer getAct() {
         return act;

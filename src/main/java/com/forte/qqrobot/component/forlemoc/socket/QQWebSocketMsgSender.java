@@ -519,6 +519,14 @@ public class QQWebSocketMsgSender implements RootSenderList {
         ReturnLoginNick loginQQNick = getLoginQQNick();
         ReturnLoginQQ loginQQCode = getLoginQQCode();
         return new LoginQQInfo() {
+            /**
+             * 获取原本的数据 originalData
+             */
+            @Override
+            public String getOriginalData() {
+                return "{here has nothing}";
+            }
+
             @Override
             public String getName() {
                 return loginQQNick.getName();

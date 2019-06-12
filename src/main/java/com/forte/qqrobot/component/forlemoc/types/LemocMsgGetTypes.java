@@ -1,6 +1,7 @@
 package com.forte.qqrobot.component.forlemoc.types;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.forte.qqrobot.component.forlemoc.beans.msgget.*;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -73,7 +74,10 @@ public enum LemocMsgGetTypes {
      * @return
      */
     public Object getBeanForJson(String json){
-        return JSON.parseObject(json, beanClass);
+        //增加原始数据
+        JSONObject jsonObject = JSON.parseObject(json);
+        jsonObject.put("originalData", json);
+        return jsonObject.toJavaObject(beanClass);
     }
 
     /**
