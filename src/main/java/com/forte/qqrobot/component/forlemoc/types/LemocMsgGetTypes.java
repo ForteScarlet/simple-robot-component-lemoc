@@ -75,8 +75,7 @@ public enum LemocMsgGetTypes {
      */
     public Object getBeanForJson(String json){
         //增加原始数据
-        JSONObject jsonObject = JSON.parseObject(json);
-        jsonObject.put("originalData", json);
+        JSONObject jsonObject = JSON.parseObject(json).fluentPut("originalData", json);
         return jsonObject.toJavaObject(beanClass);
     }
 

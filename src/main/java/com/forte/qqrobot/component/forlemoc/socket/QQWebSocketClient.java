@@ -117,8 +117,8 @@ public class QQWebSocketClient extends WebSocketClient {
             manager.onMsg(msgGet, socketSender);
         } else {
 
-            //如果act为0则说明这个消息是响应消息
-            JSONObject returnInfoJson = JSONObject.parseObject(s);
+            //如果act为0则说明这个消息是响应消息,转化并增加原生数据
+            JSONObject returnInfoJson = JSONObject.parseObject(s).fluentPut("originalData", s);
             //获取返回码
             Integer returnCode = returnInfoJson.getInteger("return");
             Class<? extends InfoReturn> typeClass = InfoReturnTypes.getInfoReturnTypesByReturn(returnCode).getReturnClass();
