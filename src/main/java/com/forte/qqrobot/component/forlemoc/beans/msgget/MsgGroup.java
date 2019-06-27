@@ -174,10 +174,12 @@ public class MsgGroup implements GroupMsg, MsgGet {
         return act+"";
     }
 
+    @Override
     public String getMsg() {
         return msg;
     }
 
+    @Override
     public void setMsg(String msg) {
         this.msg = msg;
     }
@@ -198,6 +200,7 @@ public class MsgGroup implements GroupMsg, MsgGet {
         return fromGroup;
     }
 
+    @Override
     public String getFont() {
         return font;
     }
@@ -216,6 +219,14 @@ public class MsgGroup implements GroupMsg, MsgGet {
     @Override
     public GroupMsgType getType() {
         return (fromAnonymous == null || fromAnonymous.trim().length() <= 0) ? GroupMsgType.NORMAL_MSG : GroupMsgType.ANON_MSG;
+    }
+
+    /**
+     * 获取群名称
+     */
+    @Override
+    public String getName() {
+        return fromGroupName;
     }
 
     public void setFont(String font) {

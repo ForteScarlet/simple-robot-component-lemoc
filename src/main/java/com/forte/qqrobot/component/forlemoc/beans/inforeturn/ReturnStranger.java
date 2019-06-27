@@ -121,6 +121,14 @@ public class ReturnStranger implements StrangerInfo, InfoReturn {
         return null;
     }
 
+    /**
+     * 获取名称（昵称）
+     */
+    @Override
+    public String getName() {
+        return nick;
+    }
+
     public void setAge(Integer age) {
         this.age = age;
     }

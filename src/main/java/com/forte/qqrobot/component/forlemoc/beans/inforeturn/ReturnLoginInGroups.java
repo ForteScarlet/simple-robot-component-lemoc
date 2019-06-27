@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.forte.qqrobot.beans.messages.result.GroupList;
+import com.forte.qqrobot.beans.messages.result.inner.Group;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -111,17 +112,21 @@ public class ReturnLoginInGroups implements GroupList, InfoReturn {
      *  {"groupId": "3333","groupName": "法鸡粉丝群"}
      *]
      */
-    public class GroupInfo implements Group{
+    public class GroupInfo implements Group {
         /** 群号 */
         private final String groupId;
         /** 群名 */
         private final String groupName;
+
+        /** 原始数据 */
+        private final String originalData;
 
         /** 构造 */
         GroupInfo(String jsonData){
             JSONObject data = JSON.parseObject(jsonData);
             this.groupId = data.getString("groupId");
             this.groupName = data.getString("groupName");
+            this.originalData = jsonData;
         }
 
         public String getGroupId() {
@@ -163,7 +168,14 @@ public class ReturnLoginInGroups implements GroupList, InfoReturn {
         public String getHeadUrl() {
             return null;
         }
+
+        @Override
+        public String getOriginalData() {
+            return originalData;
+        }
     }
+
+
 
     @Override
     public String toString() {

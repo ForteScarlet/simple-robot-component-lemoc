@@ -68,11 +68,12 @@ public class LemocApplication extends BaseApplication<LinkConfiguration> {
      * 开发者实现的开始连接的方法
      */
     @Override
-    protected void start(ListenerManager manager) {
+    protected String start(ListenerManager manager) {
         // 连接socket
         qqWebSocketClient = linkSocket(manager);
         //保存送信器
         sender = qqWebSocketClient.getSocketSender();
+        return "LEMOC连接";
     }
 
     /**

@@ -6,6 +6,8 @@ import com.forte.qqrobot.beans.messages.result.*;
 import com.forte.qqrobot.beans.messages.types.GroupAddRequestType;
 import com.forte.qqrobot.component.forlemoc.SocketResourceDispatchCenter;
 import com.forte.qqrobot.component.forlemoc.beans.inforeturn.*;
+import com.forte.qqrobot.component.forlemoc.exception.LemocException;
+import com.forte.qqrobot.log.QQLog;
 import com.forte.qqrobot.sender.senderlist.RootSenderList;
 
 import java.util.function.Supplier;
@@ -72,7 +74,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public boolean sendFlower(String group, String QQ) {
-        return false;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -138,7 +140,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public boolean setMsgRecall(String flag) {
-        return false;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -147,7 +149,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public boolean setSign() {
-        return false;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -200,7 +202,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
      * @param setadmin 是否设置为管理员
      */
     @Override
-    public boolean setGroupAdmin(String QQID, String groupid, boolean setadmin) {
+    public boolean setGroupAdmin(String groupid, String QQID, boolean setadmin) {
         try{
             send(creator.getResponseJson_setGroupAdmin(QQID, groupid, setadmin));
             return true;
@@ -261,11 +263,15 @@ public class QQWebSocketMsgSender implements RootSenderList {
      * @param duration 禁言时间，单位为秒
      */
     @Override
-    public boolean setGroupBan(String QQID, String groupid, Long duration) {
+    public boolean setGroupBan(String groupid, String QQID, Long duration) {
         try{
-            send(creator.getResponseJson_setGroupMemberBanned(QQID, groupid, duration));
+            String responseJson_setGroupMemberBanned = creator.getResponseJson_setGroupMemberBanned(QQID, groupid, duration);
+            send(responseJson_setGroupMemberBanned);
+            System.out.println(responseJson_setGroupMemberBanned);
             return true;
-        }catch (Exception e){ return false; }
+        }catch (Exception e){
+            return false;
+        }
     }
 
     /**
@@ -276,7 +282,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
      * @param newcard 新名片
      */
     @Override
-    public boolean setGroupCard(String QQID, String groupid, String newcard) {
+    public boolean setGroupCard(String groupid, String QQID, String newcard) {
         try{
             send(creator.getResponseJson_setGroupMemberCard(QQID, groupid, newcard));
             return true;
@@ -292,7 +298,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
      */
     @Override
     public boolean setGroupFileDelete(String group, String flag) {
-        return false;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -303,7 +309,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
      * @param rejectaddrequest 是否拒绝添加请求
      */
     @Override
-    public boolean setGroupMemberKick(String QQID, String groupid, boolean rejectaddrequest) {
+    public boolean setGroupMemberKick(String groupid, String QQID, boolean rejectaddrequest) {
         try{
             send(creator.getResponseJson_setGroupMemberRemove(QQID, groupid, rejectaddrequest));
             return true;
@@ -317,7 +323,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
      */
     @Override
     public boolean setGroupSign(String group) {
-        return false;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -352,7 +358,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public AnonInfo getAnonInfo(String flag) {
-        return null;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -364,7 +370,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public AuthInfo getAuthInfo() {
-        return null;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -376,7 +382,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public BanList getBanList(String group) {
-        return null;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -388,7 +394,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public FileInfo getFileInfo(String flag) {
-        return null;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -399,7 +405,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public FriendList getFriendList() {
-        return null;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -411,7 +417,19 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public GroupHomeworkList getGroupHomeworkList(String group) {
-        return null;
+        throw LemocException.notSupportApi();
+    }
+
+    /**
+     * 取群作业列表
+     *
+     * @param group  群号
+     * @param number 获取数量
+     * @return 群作业列表
+     */
+    @Override
+    public GroupHomeworkList getGroupHomeworkList(String group, int number) {
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -423,7 +441,19 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public GroupInfo getGroupInfo(String group) {
-        return null;
+        throw LemocException.notSupportApi();
+    }
+
+    /**
+     * 取群信息
+     *
+     * @param group 群号
+     * @param cache 是否使用缓存
+     * @return 群信息
+     */
+    @Override
+    public GroupInfo getGroupInfo(String group, boolean cache) {
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -435,7 +465,19 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public GroupLinkList getGroupLinkList(String groupList) {
-        return null;
+        throw LemocException.notSupportApi();
+    }
+
+    /**
+     * 取群链接列表
+     *
+     * @param group  群号
+     * @param number 获取数量
+     * @return 群链接
+     */
+    @Override
+    public GroupLinkList getGroupLinkList(String group, int number) {
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -462,6 +504,19 @@ public class QQWebSocketMsgSender implements RootSenderList {
     }
 
     /**
+     * 取群成员信息
+     *
+     * @param group 群号
+     * @param QQ    QQ号
+     * @param cache 是否使用缓存
+     * @return 群成员信息
+     */
+    @Override
+    public GroupMemberInfo getGroupMemberInfo(String group, String QQ, boolean cache) {
+        throw LemocException.notSupportApi();
+    }
+
+    /**
      * 取群成员列表
      *
      * @param group 群号
@@ -470,7 +525,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public GroupMemberList getGroupMemberList(String group) {
-        return null;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -482,7 +537,19 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public GroupNoteList getGroupNoteList(String group) {
-        return null;
+        throw LemocException.notSupportApi();
+    }
+
+    /**
+     * 取群公告列表
+     *
+     * @param group  群号
+     * @param number 数量
+     * @return 群公告列表
+     */
+    @Override
+    public GroupNoteList getGroupNoteList(String group, int number) {
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -494,7 +561,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public GroupTopNote getGroupTopNote(String group) {
-        return null;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -506,7 +573,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public ImageInfo getImageInfo(String flag) {
-        return null;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -556,7 +623,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
     @Override
     @Deprecated
     public ShareList getShareList(String group) {
-        return null;
+        throw LemocException.notSupportApi();
     }
 
     /**
@@ -586,6 +653,18 @@ public class QQWebSocketMsgSender implements RootSenderList {
         return get(25304, () -> creator.getResponseJson_InfoStranger(QQID, "true"), ReturnStranger.class);
     }
 
+    /**
+     * 取陌生人信息
+     *
+     * @param QQ    陌生人的QQ号
+     * @param cache 是否使用缓存
+     * @return
+     */
+    @Override
+    public StrangerInfo getStrangerInfo(String QQ, boolean cache) {
+        throw LemocException.notSupportApi();
+    }
+
 
     //**************************************
     //*          消息发送等方法
@@ -595,7 +674,8 @@ public class QQWebSocketMsgSender implements RootSenderList {
      * 发送消息 - 在一条新的线程中发送消息
      */
     void send(String text) {
-        ResourceDispatchCenter.getThreadPool().execute(() -> client.send(text));
+        client.send(text);
+//        ResourceDispatchCenter.getThreadPool().execute(() -> client.send(text));
     }
 
     /**

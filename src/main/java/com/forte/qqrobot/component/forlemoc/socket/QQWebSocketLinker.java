@@ -58,15 +58,22 @@ public class QQWebSocketLinker {
             QQLog.info("本地连接成功");
         }
 
+        //参数需要：URI、QQWebSocketMsgSender sender、set<InitListener> initListeners
+        Object[] params;
+        try {
+            params = new Object[]{
+                    new URI(url),
+                    manager,
+                    linkConfiguration.getInitListeners()
+            };
+        } catch (URISyntaxException e) {
+            throw new RobotRuntionException("连接参数构建出现异常！", e);
+        }
+
         //如果本地连接失败，正常连接
         while (!localB) {
             try {
-                //参数需要：URI、QQWebSocketMsgSender sender、Set<SocketListener> listeners、set<InitListener> initListeners
-                Object[] params = new Object[]{
-                        new URI(url),
-                        manager,
-                        linkConfiguration.getInitListeners()
-                };
+
                 cc = client.getConstructor(URI.class, ListenerManager.class, Set.class).newInstance(params);
                 QQLog.info("连接阻塞中...");
                 success = cc.connectBlocking();
@@ -77,7 +84,7 @@ public class QQWebSocketLinker {
                 } else {
                     Thread.sleep(1000);
                 }
-            } catch (URISyntaxException | InterruptedException e) {
+            } catch (InterruptedException e) {
                 QQLog.debug("连接出现异常");
                 e.printStackTrace();
                 try {
