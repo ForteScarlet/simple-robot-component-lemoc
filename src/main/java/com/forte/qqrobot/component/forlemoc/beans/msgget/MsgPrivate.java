@@ -161,14 +161,6 @@ public class MsgPrivate implements PrivateMsg, MsgGet {
     }
 
     /**
-     * 获取此人的昵称
-     */
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    /**
      * 获取到的时间, 代表某一时间的秒值。注意是秒值！如果类型不对请自行转化
      */
     @Override

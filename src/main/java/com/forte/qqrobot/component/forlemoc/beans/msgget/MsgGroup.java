@@ -224,7 +224,6 @@ public class MsgGroup implements GroupMsg, MsgGet {
     /**
      * 获取群名称
      */
-    @Override
     public String getName() {
         return fromGroupName;
     }
