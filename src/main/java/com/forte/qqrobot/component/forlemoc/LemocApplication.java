@@ -3,6 +3,7 @@ package com.forte.qqrobot.component.forlemoc;
 import com.forte.qqrobot.BaseApplication;
 import com.forte.qqrobot.component.forlemoc.socket.*;
 import com.forte.qqrobot.listener.invoker.ListenerManager;
+import com.forte.qqrobot.log.QQLogBack;
 import com.forte.qqrobot.sender.senderlist.SenderGetList;
 import com.forte.qqrobot.sender.senderlist.SenderSendList;
 import com.forte.qqrobot.sender.senderlist.SenderSetList;
@@ -111,5 +112,24 @@ public class LemocApplication extends BaseApplication<LinkConfiguration> {
         }else{
             qqWebSocketClient.close();
         }
+    }
+
+
+    //**************** 构造 ****************//
+
+
+    /**
+     * 无参构造
+     */
+    public LemocApplication() {
+    }
+
+    /**
+     * 日志拦截构造
+     *
+     * @param qqLogBack
+     */
+    public LemocApplication(QQLogBack qqLogBack) {
+        super(qqLogBack);
     }
 }

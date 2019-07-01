@@ -1,6 +1,7 @@
 package com.forte.qqrobot.component.forlemoc.beans.msgget;
 
 import com.forte.qqrobot.beans.messages.msgget.GroupAddRequest;
+import com.forte.qqrobot.beans.messages.types.GroupAddRequestType;
 
 /**
  * 302 请求-群添加
@@ -110,6 +111,16 @@ sendTime，fromGroup，fromQQ，msg（附言），responseFlag（反馈标识-�
 
     public String getMsg() {
         return msg;
+    }
+
+    /**
+     * 加群类型
+     */
+    @Override
+    public GroupAddRequestType getRequestType() {
+        //子类型，1/他人申请入群 2/自己(即登录号)受邀入群 */
+        //    private Integer subType;
+        return subType == 1 ? GroupAddRequestType.ADD : subType == 2 ? GroupAddRequestType.INVITE : null;
     }
 
     /**

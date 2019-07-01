@@ -1,13 +1,11 @@
 package com.forte.qqrobot.component.forlemoc.socket;
 
 
-import com.forte.qqrobot.ResourceDispatchCenter;
 import com.forte.qqrobot.beans.messages.result.*;
 import com.forte.qqrobot.beans.messages.types.GroupAddRequestType;
 import com.forte.qqrobot.component.forlemoc.SocketResourceDispatchCenter;
 import com.forte.qqrobot.component.forlemoc.beans.inforeturn.*;
 import com.forte.qqrobot.component.forlemoc.exception.LemocException;
-import com.forte.qqrobot.log.QQLog;
 import com.forte.qqrobot.sender.senderlist.RootSenderList;
 
 import java.util.function.Supplier;
@@ -160,7 +158,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
      * @param duration  时间，单位 秒
      */
     @Override
-    public boolean setGroupAnonymousBan(String groupid, String anonymous, Long duration) {
+    public boolean setGroupAnonymousBan(String groupid, String anonymous, long duration) {
         try{
             send(creator.getResponseJson_setAnoGroupMemberBanned(groupid, duration, anonymous));
             return true;
@@ -263,7 +261,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
      * @param duration 禁言时间，单位为秒
      */
     @Override
-    public boolean setGroupBan(String groupid, String QQID, Long duration) {
+    public boolean setGroupBan(String groupid, String QQID, long duration) {
         try{
             String responseJson_setGroupMemberBanned = creator.getResponseJson_setGroupMemberBanned(QQID, groupid, duration);
             send(responseJson_setGroupMemberBanned);
@@ -335,7 +333,7 @@ public class QQWebSocketMsgSender implements RootSenderList {
      * @param newspecialtitle 专属头衔
      */
     @Override
-    public boolean setGroupExclusiveTitle(String groupid, String QQID, String newspecialtitle, Long duration) {
+    public boolean setGroupExclusiveTitle(String groupid, String QQID, String newspecialtitle, long duration) {
         try{
             send(creator.getResponseJson_setGroupMemberSpecialTitle(QQID, groupid, duration, newspecialtitle));
             return true;
