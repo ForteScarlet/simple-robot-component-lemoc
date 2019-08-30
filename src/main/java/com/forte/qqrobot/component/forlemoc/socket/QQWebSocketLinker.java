@@ -45,8 +45,7 @@ public class QQWebSocketLinker {
             //准备参数
             Object[] localParams = new Object[]{
                     new URI(LOCAL_IP_WITH_HEAD + linkConfiguration.getPort()),
-                    manager,
-                    linkConfiguration.getInitListeners()
+                    manager
             };
             cc = client.getConstructor(URI.class, ListenerManager.class, Set.class).newInstance(localParams);
             localB = cc.connectBlocking();
@@ -63,8 +62,7 @@ public class QQWebSocketLinker {
         try {
             params = new Object[]{
                     new URI(url),
-                    manager,
-                    linkConfiguration.getInitListeners()
+                    manager
             };
         } catch (URISyntaxException e) {
             throw new RobotRuntionException("连接参数构建出现异常！", e);

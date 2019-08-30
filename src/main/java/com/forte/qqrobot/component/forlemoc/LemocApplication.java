@@ -16,7 +16,7 @@ import java.io.IOException;
  * @date Created in 2019/3/6 18:10
  * @since JDK1.8
  **/
-public class LemocApplication extends BaseApplication<LinkConfiguration> {
+public class LemocApplication extends BaseApplication<LinkConfiguration, QQWebSocketMsgSender> {
 
     /**
      * 送信器，将会在连接成功后的after方法中用于构建MsgSender
@@ -25,6 +25,10 @@ public class LemocApplication extends BaseApplication<LinkConfiguration> {
 
     /** 与服务端的连接 */
     private QQWebSocketClient qqWebSocketClient;
+
+    @Override
+    protected void resourceInit(LinkConfiguration linkConfiguration) {
+    }
 
     /**
      * 资源初始化
@@ -61,6 +65,11 @@ public class LemocApplication extends BaseApplication<LinkConfiguration> {
      */
     @Override
     protected SenderGetList getGetter() {
+        return sender;
+    }
+
+    @Override
+    public QQWebSocketMsgSender getSpecialApi() {
         return sender;
     }
 

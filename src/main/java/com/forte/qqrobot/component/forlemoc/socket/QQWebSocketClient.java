@@ -8,7 +8,6 @@ import com.forte.qqrobot.component.forlemoc.SocketResourceDispatchCenter;
 import com.forte.qqrobot.component.forlemoc.beans.inforeturn.InfoReturn;
 import com.forte.qqrobot.component.forlemoc.types.InfoReturnTypes;
 import com.forte.qqrobot.component.forlemoc.types.LemocMsgGetTypes;
-import com.forte.qqrobot.listener.InitListener;
 import com.forte.qqrobot.listener.invoker.ListenerManager;
 import com.forte.qqrobot.log.QQLog;
 import com.forte.qqrobot.sender.MsgSender;
@@ -17,7 +16,6 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
-import java.util.Set;
 
 /**
  * socket客户端连接
@@ -39,20 +37,15 @@ public class QQWebSocketClient extends WebSocketClient {
      */
     private final ListenerManager manager;
 
-    /**
-     * 初始化监听器
-     */
-    private final Set<InitListener> initListeners;
 
     /**
      * 构造
      *
      * @param serverURI 父类{@link WebSocketClient}所需参数，用于连接
      */
-    public QQWebSocketClient(URI serverURI, ListenerManager manager, Set<InitListener> initListeners) {
+    public QQWebSocketClient(URI serverURI, ListenerManager manager) {
         super(serverURI);
         this.manager = manager;
-        this.initListeners = initListeners;
         this.socketSender = QQWebSocketMsgSender.build(this);
     }
 
@@ -66,13 +59,6 @@ public class QQWebSocketClient extends WebSocketClient {
     @Override
     public final void onOpen(ServerHandshake serverHandshake) {
         onOpened(serverHandshake);
-        CQCodeUtil cqCodeUtil = ResourceDispatchCenter.getCQCodeUtil();
-
-        //初始化监听器暂时不属于ListenerMethod
-        //先执行默认的初始化监听器
-        //ResourceDispatchCenter.getThreadPool().execute(() -> new DefaultInitListener().init(cqCodeUtil, createNoMethodSender()));
-        //连接成功后，调用全部的初始化监听器，在新线程种进行初始化且并行执行
-        ResourceDispatchCenter.getThreadPool().execute(() -> initListeners.forEach(l -> l.init(cqCodeUtil, createNoMethodSender())));
     }
 
     /**
