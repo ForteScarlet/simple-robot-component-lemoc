@@ -2,6 +2,7 @@ package com.forte.qqrobot.component.forlemoc;
 
 
 import com.forte.qqrobot.BaseConfiguration;
+import com.forte.qqrobot.anno.depend.Depend;
 import com.forte.qqrobot.component.forlemoc.socket.QQWebSocketClient;
 
 /**
@@ -80,29 +81,33 @@ public final class LinkConfiguration extends BaseConfiguration {
         this.socketClient = socketClient;
     }
 
+    @Deprecated
     public static Integer getHTTP_API_port() {
         return HTTP_API_port;
     }
 
-    public void setHTTP_API_port(Integer HTTP_API_port) {
-        LinkConfiguration.HTTP_API_port = HTTP_API_port;
-    }
+//    @Deprecated
+//    public void setHTTP_API_port(Integer HTTP_API_port) {
+//        LinkConfiguration.HTTP_API_port = HTTP_API_port;
+//    }
 
+    @Deprecated
     public static String getHTTP_API_ip() {
         return HTTP_API_ip;
     }
 
-    public void setHTTP_API_ip(String HTTP_API_ip) {
-        LinkConfiguration.HTTP_API_ip = HTTP_API_ip;
-    }
+//    public void setHTTP_API_ip(String HTTP_API_ip) {
+//        LinkConfiguration.HTTP_API_ip = HTTP_API_ip;
+//    }
 
+    @Deprecated
     public static String getHTTP_API_path() {
         return HTTP_API_path;
     }
 
-    public void setHTTP_API_path(String HTTP_API_path) {
-        LinkConfiguration.HTTP_API_path = HTTP_API_path;
-    }
+//    public void setHTTP_API_path(String HTTP_API_path) {
+//        LinkConfiguration.HTTP_API_path = HTTP_API_path;
+//    }
 
     public void setRetryTime(int retryTime){
         this.retryTime = retryTime;

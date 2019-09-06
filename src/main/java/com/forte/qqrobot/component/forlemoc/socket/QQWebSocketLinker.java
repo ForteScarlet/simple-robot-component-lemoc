@@ -36,7 +36,8 @@ public class QQWebSocketLinker {
         //获取连接配置
         LinkConfiguration linkConfiguration = SocketResourceDispatchCenter.getLinkConfiguration();
         int times = 0;
-        boolean localB = true;
+//        boolean localB = false;
+        boolean localB = false;
         //是否连接成功
         boolean success = false;
         //连接的时候先尝试一次本地连接
@@ -47,17 +48,19 @@ public class QQWebSocketLinker {
                     new URI(LOCAL_IP_WITH_HEAD + linkConfiguration.getPort()),
                     manager
             };
-            cc = client.getConstructor(URI.class, ListenerManager.class, Set.class).newInstance(localParams);
+            cc = client.getConstructor(URI.class, ListenerManager.class).newInstance(localParams);
             localB = cc.connectBlocking();
         } catch (Exception e) {
-            QQLog.debug("本地连接失败");
+            QQLog.debug("本地连接失败：" + e.getMessage());
         }
 
-        if (localB) {
+        // 如果本地连接成功，直接返回
+        if (cc != null || localB) {
             QQLog.info("本地连接成功");
+            return cc;
         }
 
-        //参数需要：URI、QQWebSocketMsgSender sender、set<InitListener> initListeners
+        //参数需要：URI、QQWebSocketMsgSender sender
         Object[] params;
         try {
             params = new Object[]{
@@ -69,10 +72,10 @@ public class QQWebSocketLinker {
         }
 
         //如果本地连接失败，正常连接
-        while (!localB) {
+        while (true) {
             try {
 
-                cc = client.getConstructor(URI.class, ListenerManager.class, Set.class).newInstance(params);
+                cc = client.getConstructor(URI.class, ListenerManager.class).newInstance(params);
                 QQLog.info("连接阻塞中...");
                 success = cc.connectBlocking();
                 QQLog.info(success ? "连接成功" : "连接失败");
