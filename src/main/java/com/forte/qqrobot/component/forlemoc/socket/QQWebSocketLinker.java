@@ -2,14 +2,13 @@ package com.forte.qqrobot.component.forlemoc.socket;
 
 import com.forte.qqrobot.component.forlemoc.LinkConfiguration;
 import com.forte.qqrobot.component.forlemoc.SocketResourceDispatchCenter;
-import com.forte.qqrobot.exception.RobotRuntionException;
+import com.forte.qqrobot.exception.RobotRuntimeException;
 import com.forte.qqrobot.listener.invoker.ListenerManager;
 import com.forte.qqrobot.log.QQLog;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Set;
 
 /**
  * QQWebSocket连接器
@@ -68,7 +67,7 @@ public class QQWebSocketLinker {
                     manager
             };
         } catch (URISyntaxException e) {
-            throw new RobotRuntionException("连接参数构建出现异常！", e);
+            throw new RobotRuntimeException("连接参数构建出现异常！", e);
         }
 
         //如果本地连接失败，正常连接
@@ -111,7 +110,7 @@ public class QQWebSocketLinker {
             return cc;
         }else{
             //如果失败，抛出异常
-            throw new RobotRuntionException("连接失败");
+            throw new RobotRuntimeException("连接失败");
         }
 
     }

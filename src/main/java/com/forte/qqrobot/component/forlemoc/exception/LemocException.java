@@ -1,13 +1,14 @@
 package com.forte.qqrobot.component.forlemoc.exception;
 
-import com.forte.qqrobot.exception.RobotRuntionException;
+
+import com.forte.qqrobot.exception.RobotRuntimeException;
 
 /**
  * Lemoc中的异常，以标记那些不支持的API
  * @author ForteScarlet <[email]ForteScarlet@163.com>
  * @since JDK1.8
  **/
-public class LemocException extends RobotRuntionException {
+public class LemocException extends RobotRuntimeException {
 
     /**
      * 不支持的API

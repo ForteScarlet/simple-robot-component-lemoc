@@ -108,10 +108,12 @@ public class MsgDisGroup implements DiscussMsg, MsgGet {
         return msg;
     }
 
+    @Override
     public void setMsg(String msg) {
         this.msg = msg;
     }
 
+    @Override
     public String getFont() {
         return font;
     }
@@ -149,7 +151,7 @@ public class MsgDisGroup implements DiscussMsg, MsgGet {
      * 获取到的时间, 代表某一时间的秒值。注意是秒值！如果类型不对请自行转化
      */
     @Override
-    public long getTime() {
+    public Long getTime() {
         return sendTime;
     }
 

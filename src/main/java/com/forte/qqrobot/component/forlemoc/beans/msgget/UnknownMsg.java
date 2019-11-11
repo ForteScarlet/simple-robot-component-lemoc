@@ -44,8 +44,8 @@ public class UnknownMsg implements MsgGet {
      * 获取到的时间, 代表某一时间的秒值。注意是秒值！如果类型不对请自行转化
      */
     @Override
-    public long getTime() {
-        return 0;
+    public Long getTime() {
+        return 0L;
     }
 
     @Override

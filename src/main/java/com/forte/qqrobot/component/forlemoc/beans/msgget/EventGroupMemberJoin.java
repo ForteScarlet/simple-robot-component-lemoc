@@ -146,7 +146,7 @@ subType（子类型，1/管理员已同意 2/管理员邀请）
      * 获取到的时间, 代表某一时间的秒值。注意是秒值！如果类型不对请自行转化
      */
     @Override
-    public long getTime() {
+    public Long getTime() {
         return sendTime;
     }
 

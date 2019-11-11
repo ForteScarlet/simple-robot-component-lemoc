@@ -88,7 +88,7 @@ public class QQWebSocketClient extends WebSocketClient {
         //由于是socket连接，是LEMOC插件，接收消息必然存在act参数
         //接收到了消息，获取act编号
         Integer act = JSONObject.parseObject(s).getInteger("act");
-        String msg = JSONObject.parseObject(s).getString("msg");
+//        String msg = JSONObject.parseObject(s).getString("msg");
 
         //判断信息类型
         if (act != 0) {
