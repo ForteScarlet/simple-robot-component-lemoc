@@ -20,7 +20,7 @@ import java.net.URISyntaxException;
 public class QQWebSocketLinker {
 
 
-    private static final String LOCAL_IP_WITH_HEAD = "ws://localhost:";
+//    private static final String LOCAL_IP_WITH_HEAD = "ws://localhost:";
 
     /**
      * 连接qqwebsocket
@@ -36,30 +36,31 @@ public class QQWebSocketLinker {
         LinkConfiguration linkConfiguration = SocketResourceDispatchCenter.getLinkConfiguration();
         int times = 0;
 //        boolean localB = false;
-        boolean localB = false;
         //是否连接成功
         boolean success = false;
-        //连接的时候先尝试一次本地连接
-        try {
-            QQLog.info("尝试本地连接...");
-            //准备参数
-            Object[] localParams = new Object[]{
-                    new URI(LOCAL_IP_WITH_HEAD + linkConfiguration.getPort()),
-                    manager
-            };
-            cc = client.getConstructor(URI.class, ListenerManager.class).newInstance(localParams);
-            localB = cc.connectBlocking();
-        } catch (Exception e) {
-            QQLog.debug("本地连接失败：" + e.getMessage());
-        }
-
-        // 如果本地连接成功，直接返回
-        if (cc != null || localB) {
-            QQLog.info("本地连接成功");
-            return cc;
-        }
+        // 连接的时候先尝试一次本地连接
+        // TODO 2019/12/27 不再强制本地连接
+//        try {
+//            QQLog.info("尝试本地连接...");
+//            //准备参数
+//            Object[] localParams = new Object[]{
+//                    new URI(LOCAL_IP_WITH_HEAD + linkConfiguration.getPort()),
+//                    manager
+//            };
+//            cc = client.getConstructor(URI.class, ListenerManager.class).newInstance(localParams);
+//            localB = cc.connectBlocking();
+//        } catch (Exception e) {
+//            QQLog.debug("本地连接失败：" + e.getMessage());
+//        }
+//
+//        // 如果本地连接成功，直接返回
+//        if (cc != null || localB) {
+//            QQLog.info("本地连接成功");
+//            return cc;
+//        }
 
         //参数需要：URI、QQWebSocketMsgSender sender
+
         Object[] params;
         try {
             params = new Object[]{
@@ -85,8 +86,7 @@ public class QQWebSocketLinker {
                     Thread.sleep(1000);
                 }
             } catch (InterruptedException e) {
-                QQLog.debug("连接出现异常");
-                e.printStackTrace();
+                QQLog.error("连接出现异常", e);
                 try {
                     Thread.sleep(1500);
                 } catch (InterruptedException ignore) {
@@ -104,7 +104,7 @@ public class QQWebSocketLinker {
         }
 
         //循环结束判断是否连接成功
-        if(localB || success){
+        if(success){
             //如果成功，调用成功回调并返回连接
             linkSuccess();
             return cc;

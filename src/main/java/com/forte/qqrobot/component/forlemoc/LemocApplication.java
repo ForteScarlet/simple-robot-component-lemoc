@@ -2,6 +2,7 @@ package com.forte.qqrobot.component.forlemoc;
 
 import com.forte.qqrobot.BaseApplication;
 import com.forte.qqrobot.component.forlemoc.socket.*;
+import com.forte.qqrobot.depend.DependCenter;
 import com.forte.qqrobot.listener.invoker.ListenerManager;
 import com.forte.qqrobot.log.QQLogBack;
 import com.forte.qqrobot.sender.senderlist.SenderGetList;
@@ -16,7 +17,7 @@ import java.io.IOException;
  * @date Created in 2019/3/6 18:10
  * @since JDK1.8
  **/
-public class LemocApplication extends BaseApplication<LinkConfiguration, QQWebSocketMsgSender> {
+public class LemocApplication extends BaseApplication<LinkConfiguration, LemocSpecialApi> {
 
     /**
      * 送信器，将会在连接成功后的after方法中用于构建MsgSender
@@ -25,6 +26,9 @@ public class LemocApplication extends BaseApplication<LinkConfiguration, QQWebSo
 
     /** 与服务端的连接 */
     private QQWebSocketClient qqWebSocketClient;
+
+    /** 特殊API对象 */
+    private LemocSpecialApi spApi;
 
     @Override
     protected void resourceInit(LinkConfiguration linkConfiguration) {
@@ -69,8 +73,8 @@ public class LemocApplication extends BaseApplication<LinkConfiguration, QQWebSo
     }
 
     @Override
-    public QQWebSocketMsgSender getSpecialApi() {
-        return sender;
+    public LemocSpecialApi getSpecialApi() {
+        return spApi;
     }
 
 
@@ -78,11 +82,14 @@ public class LemocApplication extends BaseApplication<LinkConfiguration, QQWebSo
      * 开发者实现的开始连接的方法
      */
     @Override
-    protected String start(ListenerManager manager) {
+    protected String start(DependCenter dependCenter, ListenerManager manager) {
         // 连接socket
         qqWebSocketClient = linkSocket(manager);
         //保存送信器
         sender = qqWebSocketClient.getSocketSender();
+
+        spApi = new LemocSpecialApi(sender, qqWebSocketClient);
+
         return "LEMOC连接";
     }
 
