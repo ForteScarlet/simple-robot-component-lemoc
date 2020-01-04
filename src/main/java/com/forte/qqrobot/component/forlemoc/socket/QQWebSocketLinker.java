@@ -39,7 +39,8 @@ public class QQWebSocketLinker {
         //是否连接成功
         boolean success = false;
         // 连接的时候先尝试一次本地连接
-        // TODO 2019/12/27 不再强制本地连接
+        // 2019/12/27 不再强制本地连接
+
 //        try {
 //            QQLog.info("尝试本地连接...");
 //            //准备参数
