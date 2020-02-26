@@ -5,6 +5,7 @@
 > 或尝试直接进入[快速开始](https://www.kancloud.cn/forte-scarlet/simple-coolq-doc/1131277)
 
 
+**点击项目右上角的`star`展示完整文档**
 
 
 # 快速开始
